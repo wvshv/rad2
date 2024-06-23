@@ -1,0 +1,21 @@
+import com.hazelcast.client.HazelcastClient;
+import com.hazelcast.client.config.ClientConfig;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.map.IMap;
+
+public class HazelcastDemo {
+    public static void main(String[] args) {
+        ClientConfig clientConfig = new ClientConfig();
+        clientConfig.getNetworkConfig().addAddress("hazelcast1:5701", "hazelcast2:5701", "hazelcast3:5701");
+
+        HazelcastInstance client = HazelcastClient.newHazelcastClient(clientConfig);
+        IMap<Integer, String> distributedMap = client.getMap("capitals");
+
+        for (int i = 0; i < 1000; i++) {
+            distributedMap.put(i, "Value " + i);
+        }
+
+        System.out.println("Map size: " + distributedMap.size());
+        client.shutdown();
+    }
+}
