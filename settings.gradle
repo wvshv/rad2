@@ -1,0 +1,6 @@
+rootProject.name = 'distributed-system-design-m'
+include 'logging-service'
+include 'messages-service'
+include 'facade-service'
+include 'config-server'
+include 'local-discovery'
