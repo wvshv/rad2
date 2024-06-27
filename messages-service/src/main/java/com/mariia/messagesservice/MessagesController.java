@@ -1,13 +1,20 @@
 package com.mariia.messagesservice;
 
+import com.mariia.messagesservice.messaging.Message;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class MessagesController {
 
-    @GetMapping("/static")
-    public String getStaticMessage() {
-        return "Messages service not implemented yet";
+    @Autowired
+    private MessagesService messagesService;
+
+    @GetMapping("/messages")
+    public List<Message> getMessages() {
+        return messagesService.getAllMessages();
     }
 }

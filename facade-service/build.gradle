@@ -6,16 +6,20 @@ plugins {
 
 group = 'com.mariia.facadeservice'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation project(':messages-service')
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-stream:3.2.3'
+    implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka:3.2.3'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+
 
 test {
     useJUnitPlatform()
